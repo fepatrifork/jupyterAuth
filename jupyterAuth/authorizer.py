@@ -7,7 +7,7 @@ import urllib3
 from requests.auth import AuthBase, HTTPBasicAuth
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
-import jupyterAuth.util
+import jupyterAuth.util as util
 from jupyterAuth.util import BearerAuth
 
 ALLOWED_SCHEMES = ("http", "https")
