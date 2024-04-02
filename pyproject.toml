@@ -1,12 +1,13 @@
 [project]
-name = "OSOauth2"
+name = "jupyuterAuth"
 version = "0.1.0"
 description = "JWT authorization for OpenSearch from IDP"
 requires-python = ">=3.10"
 readme = {file = "README.md", content-type = "text/markdown"}
 dependencies = [
     "prometheus-client",
-    "requests"
+    "requests",
+    "requests_oauthlib"
 ]
 
 [project.optional-dependencies]
@@ -16,7 +17,7 @@ dev = [
 ]
 
 [project.urls]
-repository = "https://github.com/fepatrifork/OSOauth2"
+repository = "https://github.com/fepatrifork/jupyterAuth"
 
 [tool.setuptools.packages.find]
 where = ["app"]
