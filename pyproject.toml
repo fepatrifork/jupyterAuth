@@ -20,7 +20,7 @@ dev = [
 repository = "https://github.com/fepatrifork/jupyterAuth"
 
 [tool.setuptools.packages.find]
-where = ["app"]
+where = ["."]
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = "logging-fstring-interpolation"
