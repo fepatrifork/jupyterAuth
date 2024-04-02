@@ -6,50 +6,6 @@ import logging
 import sys
 from typing import Optional
 
-
-def get_files(directory, extension):
-    if not os.path.isdir(directory):
-        return []
-    return [file for file in os.listdir(directory) if file.endswith(extension)]    
-
-
-def collect(collect_mode: bool, **kwargs):
-    """Collection helper function"""
-    if collect_mode:
-        return collector.collect(**kwargs)
-    return True
-
-def initialize_service_loggers():
-    """Initialize loggers for when running as a server"""
-    log_format = "%(asctime)s.%(msecs)03dZ [%(threadName)s] %(levelname)s %(module)s - %(message)s"
-    log_date = "%Y-%m-%dT%H:%M:%S"
-
-    formatter = logging.Formatter(log_format, datefmt=log_date)
-
-    root_logger = logging.getLogger()
-    root_logger.setLevel(logging.INFO)
-
-    # console
-    handler_stdout = logging.StreamHandler(sys.stdout)
-    handler_stdout.setFormatter(formatter)
-
-    root_logger.addHandler(handler_stdout)
-
-def initialize_cli_loggers():
-    """Initialize loggers for when running as a CLI"""
-    log_format = "%(levelname)s - %(message)s"
-
-    formatter = logging.Formatter(log_format)
-
-    root_logger = logging.getLogger()
-    root_logger.setLevel(logging.INFO)
-
-    # console
-    handler_stdout = logging.StreamHandler(sys.stdout)
-    handler_stdout.setFormatter(formatter)
-
-    root_logger.addHandler(handler_stdout)
-
 def verify_connection(host_url: str, auth: Optional[AuthBase] = None):
     """Checks the connection to OpenSearch"""
     url = f"{host_url}/_plugins/_security/api/account"
