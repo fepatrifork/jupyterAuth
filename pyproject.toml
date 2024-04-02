@@ -1,5 +1,5 @@
 [project]
-name = "jupyuterAuth"
+name = "jupyterAuth"
 version = "0.1.0"
 description = "JWT authorization for OpenSearch from IDP"
 requires-python = ">=3.10"
