@@ -1,0 +1,25 @@
+[project]
+name = "OSOauth2"
+version = "0.1.0"
+description = "JWT authorization for OpenSearch from IDP"
+requires-python = ">=3.10"
+readme = {file = "README.md", content-type = "text/markdown"}
+dependencies = [
+    "prometheus-client",
+    "requests"
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pylint"
+]
+
+[project.urls]
+repository = "https://github.com/fepatrifork/OSOauth2"
+
+[tool.setuptools.packages.find]
+where = ["app"]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = "logging-fstring-interpolation"

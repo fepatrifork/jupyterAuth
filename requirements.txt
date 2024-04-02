@@ -1,0 +1,15 @@
+black==24.2.0
+certifi==2024.2.2
+charset-normalizer==3.3.2
+click==8.1.7
+idna==3.6
+mypy-extensions==1.0.0
+packaging==24.0
+pathspec==0.12.1
+prometheus-client==0.20.0
+platformdirs==4.2.0
+requests==2.31.0
+tomli==2.0.1
+urllib3==2.2.1
+requests-oauthlib==1.4.0
+apache-flink==1.18.1
