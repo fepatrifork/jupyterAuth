@@ -50,15 +50,13 @@ class Authorizer:
             auth = BearerAuth(token)
             print ("Connection established")
             print (f"Using OAuth2 flow as {os_user}")
-
         elif os_user and os_pass:
             auth = HTTPBasicAuth(os_user, os_pass)
             print ("Connection established")
             print (f"Using HTTP basic authentication as {os_user}")
         else:
             auth = None
-            print ("Connection established")
-            logging.info("Using anonymous authentication")
+            print ("Using anonymous authentication")
 
         scheme = os.environ.get("SCHEME", "http")
         if scheme not in ALLOWED_SCHEMES:
@@ -66,7 +64,7 @@ class Authorizer:
 
         if self.os_scope == "opensearch":
             opensearch_endpoint = f"{scheme}://{self.host}"
-            if not util.verify_connection(opensearch_endpoint, auth):
+            if not util.verify_OS_connection(opensearch_endpoint, auth):
                 print (f"Authentication not valid")
 
         return auth
@@ -89,17 +87,20 @@ class Authorizer:
                 scope=os_scope,
                 verify= False,
             )
-            auth = BearerAuth(token)
             print ("Connection established")
             print (f"Using OAuth2 flow as {os_user}")
-
+        else:
+            token = None
+            print ("Using anonymous authentication")
+            
         scheme = os.environ.get("SCHEME", "http")
         if scheme not in ALLOWED_SCHEMES:
             print (f"Scheme {scheme} not understood. Allowed schemes: {ALLOWED_SCHEMES}")
 
         if self.os_scope == "opensearch":
             opensearch_endpoint = f"{scheme}://{self.host}"
-            if not util.verify_connection(opensearch_endpoint, auth):
+            if not util.verify_OS_connection(opensearch_endpoint, auth):
                 print (f"Authentication not valid")
-            
+        
         return token
+

@@ -22,5 +22,10 @@ repository = "https://github.com/fepatrifork/jupyterAuth"
 [tool.setuptools.packages.find]
 where = ["."]
 
+[tool.coverage.run]
+branch = true
+include = ["jupyterAuth/*"]
+command_line = "-m unittest discover -s tests/"
+
 [tool.pylint.'MESSAGES CONTROL']
 disable = "logging-fstring-interpolation"

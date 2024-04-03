@@ -6,17 +6,17 @@ import logging
 import sys
 from typing import Optional
 
-def verify_connection(host_url: str, auth: Optional[AuthBase] = None):
+def verify_OS_connection(host_url: str, auth: Optional[AuthBase] = None):
     """Checks the connection to OpenSearch"""
     url = f"{host_url}/_plugins/_security/api/account"
     try:
         resp = requests.get(url, verify=False, timeout=5, auth=auth)
     except requests.exceptions.RequestException as err:
-        logging.error(f"Connection to OpenSearch could not be established: {err}")
+        print (f"Connection to OpenSearch could not be established: {err}")
         return False
 
     if not resp.ok:
-        logging.error(f"Error connecting to OpenSearch: {resp.text}")
+        print (f"Error connecting to OpenSearch: {resp.text}")
 
     return resp.ok
 
