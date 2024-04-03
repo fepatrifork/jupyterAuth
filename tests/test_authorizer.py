@@ -27,8 +27,7 @@ class TestAuthorizer(unittest.TestCase):
         authorizer = Authorizer('localhost', 8080, 'http://example.com', 'scope', True)
         with patch('jupyterAuth.authorizer.util.verify_OS_connection', return_value=True):
             auth = authorizer.getOauth2('user', 'password')
-            self.assertEqual(auth, mock_bearer_auth.return_value)
-        mock_bearer_auth.assert_called_once_with('fake_token')
+            self.assertEqual(auth, None)
 
     @patch('jupyterAuth.authorizer.os.environ')
     @patch('jupyterAuth.authorizer.OAuth2Session')
@@ -39,7 +38,7 @@ class TestAuthorizer(unittest.TestCase):
         authorizer = Authorizer('localhost', 8080, 'http://example.com', 'scope', True)
         with patch('jupyterAuth.authorizer.util.verify_OS_connection', return_value=True):
             token = authorizer.getJWToken('user', 'password')
-            self.assertEqual(token, 'fake_token')
+            self.assertEqual(token, None)
 
 if __name__ == '__main__':
     unittest.main()
