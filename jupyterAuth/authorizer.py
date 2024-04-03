@@ -26,7 +26,7 @@ class Authorizer:
         if disable_https:
             urllib3.disable_warnings()
             os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-        else      
+        else:      
             os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0'
 
     def getOauth2(self, user, password):
