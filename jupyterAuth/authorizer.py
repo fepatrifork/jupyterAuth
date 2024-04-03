@@ -25,7 +25,9 @@ class Authorizer:
         self.os_scope = scope
         if disable_https:
             urllib3.disable_warnings()
-            os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'      
+            os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+        else      
+            os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0'
 
     def getOauth2(self, user, password):
         os_tokenendpoint = os.environ.get("OS_TOKENENDPOINT", self.http_url_service)
@@ -46,26 +48,26 @@ class Authorizer:
                 verify= False,
             )
             auth = BearerAuth(token)
-            print ("Connection to OpenSearch established")
+            print ("Connection established")
             print (f"Using OAuth2 flow as {os_user}")
 
         elif os_user and os_pass:
             auth = HTTPBasicAuth(os_user, os_pass)
-            print ("Connection to OpenSearch established")
+            print ("Connection established")
             print (f"Using HTTP basic authentication as {os_user}")
         else:
             auth = None
-            print ("Connection to OpenSearch established")
+            print ("Connection established")
             logging.info("Using anonymous authentication")
 
         scheme = os.environ.get("SCHEME", "http")
         if scheme not in ALLOWED_SCHEMES:
             print (f"Scheme {scheme} not understood. Allowed schemes: {ALLOWED_SCHEMES}")
 
-        opensearch_endpoint = f"{scheme}://{self.host}"
-
-        if not util.verify_connection(opensearch_endpoint, auth):
-            print (f"Authentication not valid")
+        if self.os_scope == "opensearch":
+            opensearch_endpoint = f"{scheme}://{self.host}"
+            if not util.verify_connection(opensearch_endpoint, auth):
+                print (f"Authentication not valid")
 
         return auth
 
@@ -88,16 +90,16 @@ class Authorizer:
                 verify= False,
             )
             auth = BearerAuth(token)
-            print ("Connection to OpenSearch established")
+            print ("Connection established")
             print (f"Using OAuth2 flow as {os_user}")
 
         scheme = os.environ.get("SCHEME", "http")
         if scheme not in ALLOWED_SCHEMES:
             print (f"Scheme {scheme} not understood. Allowed schemes: {ALLOWED_SCHEMES}")
 
-        opensearch_endpoint = f"{scheme}://{self.host}"
-
-        if not util.verify_connection(opensearch_endpoint, auth):
-            print (f"Authentication not valid")
+        if self.os_scope == "opensearch":
+            opensearch_endpoint = f"{scheme}://{self.host}"
+            if not util.verify_connection(opensearch_endpoint, auth):
+                print (f"Authentication not valid")
             
         return token
