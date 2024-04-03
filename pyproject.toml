@@ -1,7 +1,7 @@
 [project]
 name = "jupyterAuth"
 version = "1.0.0"
-description = "JWT authorization for OpenSearch from IDP"
+description = "Authorization for different scopes by IDP"
 requires-python = ">=3.10"
 readme = {file = "README.md", content-type = "text/markdown"}
 dependencies = [

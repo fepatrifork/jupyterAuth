@@ -1,3 +1,3 @@
-# OSOauth2
+# jupyterAuth
 
-A module for authenticate in OpenSearch using Python Jupyter Notebook
+A plugin module for authenticate in different scopes using Python Jupyter Notebook as base and a given IDP
